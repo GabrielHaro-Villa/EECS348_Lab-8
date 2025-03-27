@@ -70,18 +70,27 @@ Matrix Matrix::operator*(const Matrix &rhs) const {
 
 void Matrix::set_value(std::size_t i, std::size_t j, int n) {
     // set the value of a specific element in the matrix
+    if (i >= size || j >= size) {
+        throw std::out_of_range("Index out of bounds in set_value()");
+    }
     matrix[i][j] = n;
 }
 
 
 int Matrix::get_value(std::size_t i, std::size_t j) const {
     // get the value of a specific element in the matrix
+    if (i >= size || j >= size) {
+        throw std::out_of_range("Index out of bounds in get_value()");
+    }
     return matrix[i][j];
 }
 
 
 void Matrix::update_element(std::size_t i, std::size_t j, int new_value) {
     // update the value of a specific element in the matrix
+    if (i >= size || j >= size) {
+        throw std::out_of_range("Index out of bounds in update_element()");
+    }
     matrix[i][j] = new_value;
 }
 
