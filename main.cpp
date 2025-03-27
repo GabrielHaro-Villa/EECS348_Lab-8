@@ -9,21 +9,21 @@ int main(int argc, char *argv[]) {
     string filename; // string to store the filename
     std::cout << "Enter the filename: "; // prompts the user for the filename
     std::cin >> filename; // reads the filename from the user input
-    Matrix matrixA(4); // Creates a 4x4 matrix
+    Matrix matrixA(0); // Creates matrix A default size 0x0
     
     // Load data from a file (assuming the file "matrix.txt" is properly formatted)
     if (!matrixA.load_from_file(filename)) {
-        std::cerr << "Failed to load matrix from file." << std::endl;
-        return 1;
+        std::cerr << "Failed to load matrix from file." << std::endl; // error message if it fails to load the file
+        return 1; // exits the program with error code 1
     }
 
     // Print the loaded matrix
     std::cout << "Matrix A:" << std::endl;
     matrixA.print_matrix();
 
+    Matrix matrixB(0); // Creates matrix B default size 0x0
     // Create another matrix (for addition and multiplication test)
-    Matrix matrixB(4);
-    if (!matrixB.load_rows_from_file(filename, 4, 4)) {
+    if (!matrixB.load_rows_from_file(filename, matrixA.get_size())) {
         std::cerr << "Failed to load matrixB from file." << std::endl;
         return 1;
     }

@@ -152,36 +152,31 @@ void Matrix::print_matrix() const {
 }
 
 
-bool Matrix::load_rows_from_file(const std::string &filename, size_t start_row, size_t num_rows) {
+bool Matrix::load_rows_from_file(const std::string &filename, size_t startRow) {
     // load specific rows from a file
     std::ifstream infile(filename);  // Open the file
     if (!infile.is_open()) {  // Check if the file is open
         return false;
     }
 
-    size_t total_size;
-    infile >> total_size;  // Read the size of the matrix (N)
+    infile >> size; // Read and ignore the size again (since we already know it)
+    matrix.resize(size, std::vector<int>(size));
     
-    // Temporary storage for skipping rows
-    std::string line;
-    std::getline(infile, line);  // Skip the first line with size
-
-    // Skip rows before start_row
-    for (size_t i = 0; i < start_row; ++i) {
-        std::getline(infile, line);
+    // Skip the rows of Matrix A
+    int temp;
+    for (std::size_t i = 0; i < startRow * size; ++i) {
+        infile >> temp; // Read and ignore the row
     }
 
-    // Resize matrix to specified number of rows
-    size = num_rows;
-    matrix.resize(size, std::vector<int>(total_size));
-
-    // Read specified number of rows
-    for (size_t i = 0; i < size; ++i) {
-        for (size_t j = 0; j < total_size; ++j) {
-            infile >> matrix[i][j];
+    // Read Matrix B from the file
+    for (std::size_t i = 0; i < size; ++i) {
+        for (std::size_t j = 0; j < size; ++j) {
+            if (!(infile >> matrix[i][j])) {
+                return false; // Return false if reading fails
+            }
         }
     }
 
-    infile.close();  // Close the file
+    infile.close();
     return true; // return true if successful, false otherwise
 }

@@ -11,7 +11,7 @@ public:
     Matrix(std::vector<std::vector<int>> nums);
 
     bool load_from_file(const std::string &filename);
-    bool load_rows_from_file(const std::string &filename, std::size_t start_row, std::size_t num_rows);
+    bool load_rows_from_file(const std::string &filename, std::size_t start_row);
     Matrix operator+(const Matrix &rhs) const;
     Matrix operator*(const Matrix &rhs) const;
     void set_value(std::size_t i, std::size_t j, int n);
