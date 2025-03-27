@@ -62,8 +62,11 @@ int main(int argc, char *argv[]) {
     matrixA.print_matrix();
 
     // Update a value in matrix A and print the result
-    matrixA.update_element(1, 1, 999);
-    std::cout << "Matrix A after updating element at (1,1) to 999:" << std::endl;
+    std::size_t row, col;
+    int newValue;
+    std::cout << "Enter row index, column index, and new value: " << std::endl;
+    std::cin >> row >> col >> newValue;
+    matrixA.update_element(row, col, newValue);
     matrixA.print_matrix();
 
 
