@@ -48,11 +48,15 @@ int main(int argc, char *argv[]) {
     std::cout << "Sum of the secondary diagonal: " << secondaryDiagonalSum << std::endl;
 
     // Swap two rows in matrix A and print the result
-    matrixA.swap_rows(0, 1);
-    std::cout << "Matrix A after swapping rows 0 and 1:" << std::endl;
+    // work here (fix if i need to make the user input indices)
+    std::size_t row1, row2;
+    std::cout << "Enter two row indices to swap: " << std::endl;
+    std::cin >> row1 >> row2;
+    matrixA.swap_rows(row1, row2);
     matrixA.print_matrix();
 
     // Swap two columns in matrix A and print the result
+    // work here (fix if i need to make the user input indices)
     matrixA.swap_cols(0, 2);
     std::cout << "Matrix A after swapping columns 0 and 2:" << std::endl;
     matrixA.print_matrix();
