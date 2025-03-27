@@ -6,10 +6,13 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    Matrix matrixA(4);
+    string filename; // string to store the filename
+    std::cout << "Enter the filename: "; // prompts the user for the filename
+    std::cin >> filename; // reads the filename from the user input
+    Matrix matrixA(4); // Creates a 4x4 matrix
     
     // Load data from a file (assuming the file "matrix.txt" is properly formatted)
-    if (!matrixA.load_from_file("matrix.txt")) {
+    if (!matrixA.load_from_file(filename)) {
         std::cerr << "Failed to load matrix from file." << std::endl;
         return 1;
     }
@@ -20,7 +23,7 @@ int main(int argc, char *argv[]) {
 
     // Create another matrix (for addition and multiplication test)
     Matrix matrixB(4);
-    if (!matrixB.load_rows_from_file("matrix.txt", 4, 4)) {
+    if (!matrixB.load_rows_from_file(filename, 4, 4)) {
         std::cerr << "Failed to load matrixB from file." << std::endl;
         return 1;
     }
