@@ -24,8 +24,8 @@ int main(int argc, char *argv[]) {
     Matrix matrixB(0); // Creates matrix B default size 0x0
     // Create another matrix (for addition and multiplication test)
     if (!matrixB.load_rows_from_file(filename, matrixA.get_size())) {
-        std::cerr << "Failed to load matrixB from file." << std::endl;
-        return 1;
+        std::cerr << "Failed to load matrixB from file." << std::endl; // error message if it fails to load the file
+        return 1; // exits the program with error code 1
     }
 
     // Print matrix B
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
     // Multiply two matrices and print the result
     Matrix product = matrixA * matrixB;
     std::cout << "Product of Matrix A and Matrix B:" << std::endl;
-    product.print_matrix();
+    product.print_matrix(); // prints the matrix
 
     // Print the sum of the main diagonal
     int mainDiagonalSum = matrixA.sum_diagonal_major();
@@ -53,25 +53,25 @@ int main(int argc, char *argv[]) {
     // Swap two rows in matrix A and print the result
     std::size_t row1, row2;
     std::cout << "Enter two row indices to swap: " << std::endl;
-    std::cin >> row1 >> row2;
-    matrixA.swap_rows(row1, row2);
-    matrixA.print_matrix();
+    std::cin >> row1 >> row2; // reads the row indices from the user input
+    matrixA.swap_rows(row1, row2); // function call to swap the rows using the two indices
+    matrixA.print_matrix(); // prints the matrix
 
     // Swap two columns in matrix A and print the result
     std::size_t col1, col2;
     std::cout << "Enter two column indices to swap: " << std::endl;
-    std::cin >> col1 >> col2;
-    matrixA.swap_cols(col1, col2);
-    matrixA.print_matrix();
+    std::cin >> col1 >> col2; // reads the column indices from the user input
+    matrixA.swap_cols(col1, col2); // function call to swap the columns using the two indices
+    matrixA.print_matrix(); // prints the matrix
 
     // Update a value in matrix A and print the result
     std::size_t row, col;
-    int newValue;
-    std::cout << "Enter row index, column index, and new value: " << std::endl;
-    std::cin >> row >> col >> newValue;
-    matrixA.update_element(row, col, newValue);
-    matrixA.print_matrix();
+    int newValue; // variable to store the new value
+    std::cout << "Enter row index, column index, and new value: " << std::endl; 
+    std::cin >> row >> col >> newValue; // reads the row index, column index, and new value from the user input
+    matrixA.update_element(row, col, newValue); // function call to update the element in the matrix
+    matrixA.print_matrix(); // prints the matrix
 
 
-    return 0;
+    return 0; // exits the program with success code 0
 }
